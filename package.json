@@ -2,6 +2,10 @@
   "name": "shell-completion",
   "version": "0.0.1",
   "description": "Link zsh or bash completion files to be used globally",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jbnicolai/shell-completion.git"
+  },
   "author": "jbnicolai <joshua@jbna.nl>",
   "license": "MIT"
 }

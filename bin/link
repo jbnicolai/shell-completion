@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+
+display_help() {
+  cat <<-EOF
+
+  Usage: link [options] [shell] [file]
+
+  Options:
+
+    -v, --version     Output current version
+    -h, --help        Display help information
+
+  Shells:
+
+    zsh               Installs to /usr/share/zsh/site-functions
+    bash              Installs to $BREW_PREFIX/etc/bash_completion.d
+
+  Example:
+
+    link bash bash-completion
+EOF
+  exit 0
+}
+
+link() {
+  ln -sf "$1" "$2"
+  if [ $? -ne 0 ]; then
+    cat <<-EOF
+
+  Failed to link completionfile $1 against $2
+  Try rerunning the following command as root:
+
+      ln -sf "$1" "$2"
+EOF
+    exit 1
+  fi
+}
+
+# Search on the system for an appriopriate bash completion dir and link against it
+
+link_bash() {
+  local completion_file="$(pwd)/$1"
+  if [[ -z "$completion_file" ]]; then
+    echo "No completion file to link specified" && exit 1
+  fi
+
+  if [ -d "/etc/bash_completion.d" ]; then
+    link "$completion_file" "/etc/bash_completion.d/"
+  elif [ -d "/usr/local/etc/bash_completion.d" ]; then
+    link "$completion_file" "/usr/local/etc/bash_completion.d/"
+  elif hash brew 2>/dev/null; then
+    if [ -d "$(brew --prefix)/etc/bash_completion.d" ]; then
+      link "$completion_file" "$(brew --prefix)/etc/bash_completion.d/"
+    fi
+  else
+    echo "No completon directory to link against found."
+    exit 1
+  fi
+}
+
+# Search on the system for an appriopriate zsh completion dir and link against it
+
+link_zsh() {
+  local completion_file="$(pwd)/$1"
+  if [[ -z "$completion_file" ]]; then
+    echo "No completion file to link specified" && exit 1
+  fi
+
+  if [ -d "/usr/share/zsh/site-functions" ]; then
+    link "$completion_file" "/usr/share/zsh/site-functions/"
+  else
+    echo "No completon directory to link against found."
+    exit 1
+  fi
+}
+
+# Handle arguments
+
+if test $# -eq 0; then
+  display_help
+else
+  case $1 in
+    -v|--version) display_version ;;
+    -h|--help) display_help ;;
+    bash) link_bash "$2" ;;
+    zsh) link_zsh "$2" ;;
+    *) echo "Unregocnized argument $1";  display_help ;;
+  esac
+fi
+
+readonly original="$(pwd)/$1"

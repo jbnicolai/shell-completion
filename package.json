@@ -1,0 +1,7 @@
+{
+  "name": "shell-completion",
+  "version": "0.0.1",
+  "description": "Link zsh or bash completion files to be used globally",
+  "author": "jbnicolai <joshua@jbna.nl>",
+  "license": "MIT"
+}

@@ -53,7 +53,7 @@ link_bash() {
       link "$completion_file" "$(brew --prefix)/etc/bash_completion.d/"
     fi
   else
-    echo "No completon directory to link against found."
+    echo "No completon directory to link $completion_file against found."
     exit 1
   fi
 }
@@ -69,7 +69,7 @@ link_zsh() {
   if [ -d "/usr/share/zsh/site-functions" ]; then
     link "$completion_file" "/usr/share/zsh/site-functions/"
   else
-    echo "No completon directory to link against found."
+    echo "No completon directory to link $completion_file against found."
     exit 1
   fi
 }

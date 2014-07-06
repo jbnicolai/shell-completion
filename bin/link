@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 display_help() {
   cat <<-EOF
@@ -62,7 +62,7 @@ link_bash() {
 
 link_zsh() {
   local completion_file="$(pwd)/$1"
-  if [[ -z "$completion_file" ]]; then
+  if [ -z "$completion_file" ]; then
     echo "No completion file to link specified" && exit 1
   fi
 

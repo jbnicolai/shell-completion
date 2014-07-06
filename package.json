@@ -1,6 +1,6 @@
 {
   "name": "shell-completion",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Link zsh or bash completion files to be used globally",
   "repository": {
     "type": "git",

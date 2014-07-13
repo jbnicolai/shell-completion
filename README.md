@@ -21,6 +21,8 @@ Shell-completion will link your completion files to the specified shell's and pl
 
 ## Features
 
+#### A pull request for Powershell support would be **very** welcome! Should be trivial for someone familiar with the platform
+
 * Supports Bash and Zsh
 * Supports Homebrew installation prefixes on OS X
 * Logs all errors if anything fails, but always exits without an error code. This means adding `install-completion` to your `postinstall` is completely safe, and will never break the rest of your application's installation!

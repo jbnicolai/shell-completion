@@ -10,6 +10,10 @@
     "install-completion": "./bin/link"
   },
   "author": "jbnicolai <joshua@jbna.nl>",
+  "maintainers": [
+    "Joshua Appelman <joshua@jbna.nl>",
+    "Tyler Kellen <tyler@sleekcode.net>"
+  ],
   "license": "MIT",
   "dependencies": {
     "chalk": "^0.5.1",

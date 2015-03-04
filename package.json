@@ -9,7 +9,7 @@
   "bin": {
     "install-completion": "./bin/link"
   },
-  "author": "jbnicolai <joshua@jbna.nl>",
+  "author": "Joshua Appelman <jappelman@xebia.com> (http://jbnicolai.com)",
   "maintainers": [
     "Joshua Appelman <joshua@jbna.nl>",
     "Tyler Kellen <tyler@sleekcode.net>"

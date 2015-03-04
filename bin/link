@@ -74,7 +74,7 @@ function savelstat(d) {
 /**
  * Attempt to link f to d. Return falsy if d does not exist,
  * truthy if the link was succesful, and swallow any errors and
- * exit if anything goes wrong. 
+ * exit if anything goes wrong.
  *
  * The latter is because the expected usage of this script is
  * as a post install hook - and it is ussually undesirable to fail
@@ -98,7 +98,7 @@ function attemptLink(f, d) {
     // otherwise, create the link
       try {
         fs.symlinkSync(f, ln, 'file');
-        logSuccess('Linked completion %s aginst %s', f, ln);
+        logSuccess('Linked completion %s against %s', f, ln);
         return true;
       } catch (e) {
         logError('Failed linking against %s, error %s', ln, e);
@@ -109,6 +109,7 @@ function attemptLink(f, d) {
 }
 
 function linkBash(f) {
+  f = path.resolve(f);
   if (fs.existsSync(f)) {
     attemptLink(f, '/etc/bash_completion.d/') ||
     attemptLink(f, '/usr/local/etc/bash_completion.d/') ||
@@ -119,6 +120,7 @@ function linkBash(f) {
 }
 
 function linkZsh(f) {
+  f = path.resolve(f);
   if (fs.existsSync(f)) {
     attemptLink(f, '/usr/share/zsh/site-functions') ||
     logError('Failed to find suitable target location to link %s against', f);
